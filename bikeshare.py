@@ -161,6 +161,8 @@ def user_stats(df):
     print('-'*40)
 
 def show_five_raw(df):
+    """Displays five rows of raw data; prompts user to show additional 5 rows until they enter 'no'"""
+
     show_raw = input("\nWould you like to see 5 rows of data? Enter yes or no\n")
     i = 0
     while show_raw == "yes":
