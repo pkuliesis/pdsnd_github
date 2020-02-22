@@ -17,25 +17,26 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    city = input("Which city are you interested in, Chicago, New York City, or Washington? Specify only one\n").lower()
-    while city not in CITY_DATA.keys():
-        city = input("Sorry, I don't recognize city '{}'. Please specify Chicago, New York City, or Washington\n".format(city)).lower()
+    city = get_input("Which city are you interested in, Chicago, New York City, or Washington? Specify only one\n", CITY_DATA.keys())
 
     # get user input for month (all, january, february, ... , june)
     months_including_all = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
-    month = input("Which month are you interested in? We have data for January through June. If all, enter all\n").lower()
-    while month not in months_including_all:
-        month = input("Sorry, I don't recognize month '{}'. Format should be full name and is not case sensitive. E.g., January. Can you re-enter?\n".format(month)).lower()
+    month = get_input("Which month are you interested in? We have data for January through June. If all, enter all\n",  months_including_all)
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
     days_including_all = ['all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-    day = input("Which day of the week are you interested in? If all, enter all\n").lower()
-    while day not in days_including_all:
-        day = input("Sorry, I don't recognize day '{}'. Format should be full name of day and is not case sensitive. E.g., Monday. Please re-enter\n".format(day)).lower()
+    day = get_input("Which day of the week are you interested in? If all, enter all\n", days_including_all)
 
     print('-'*40)
     return city, month, day
 
+def get_input(msg, ref_list):
+    entry = input(msg).lower()
+    if entry == '':
+        entry = "all"
+    while entry not in ref_list:
+        entry = input("'{}' not recognized, please re-enter\n".format(entry)+msg)
+    return entry
 
 def load_data(city, month, day):
     """
@@ -90,7 +91,9 @@ def time_stats(df):
         df['month'].value_counts().loc[most_common_month]))
 
     # display the most common day of week
-    print("\t Most common day of week: {}".format(df['day_of_week'].mode()[0]))
+    most_common_day_of_week = df['day_of_week'].mode()[0]
+    print("\t Most common day of week: {} (n={})".format(most_common_day_of_week,
+        df['day_of_week'].value_counts().loc[most_common_day_of_week]))
 
     # display the most common start hour
     df['start_hour'] = df['Start Time'].dt.hour
