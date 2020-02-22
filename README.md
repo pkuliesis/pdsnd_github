@@ -1,15 +1,14 @@
 ### Date created
-Include the date you created this project and README file.
-
-### Project Title
-Replace the Project Title
+February 22, 2020
+## Bikeshare Data Analysis
 
 ### Description
-Describe what your project is about and what it does
+This is an interactive python script for querying bikeshare sample data. After selecting a city, user can produce summary data cut by month and or day of week, with an option to review individual rows. 
 
 ### Files used
-Include the files used
+.gitignore
+bikeshare.py
+**Important:** assumes user already has the data files listed in *.gitignore*
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+Thanks to udacity git course and [adam-p's markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
