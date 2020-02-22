@@ -90,7 +90,9 @@ def time_stats(df):
         df['month'].value_counts().loc[most_common_month]))
 
     # display the most common day of week
-    print("\t Most common day of week: {}".format(df['day_of_week'].mode()[0]))
+    most_common_day_of_week = df['day_of_week'].mode()[0]
+    print("\t Most common day of week: {} (n={})".format(most_common_day_of_week,
+        df['day_of_week'].value_counts().loc[most_common_day_of_week]))
 
     # display the most common start hour
     df['start_hour'] = df['Start Time'].dt.hour
