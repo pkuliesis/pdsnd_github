@@ -21,15 +21,11 @@ def get_filters():
 
     # get user input for month (all, january, february, ... , june)
     months_including_all = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
-    month = input("Which month are you interested in? We have data for January through June. If all, enter all\n").lower()
-    while month not in months_including_all:
-        month = input("Sorry, I don't recognize month '{}'. Format should be full name and is not case sensitive. E.g., January. Can you re-enter?\n".format(month)).lower()
+    month = get_input("Which month are you interested in? We have data for January through June. If all, enter all\n",  months_including_all)
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
     days_including_all = ['all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-    day = input("Which day of the week are you interested in? If all, enter all\n").lower()
-    while day not in days_including_all:
-        day = input("Sorry, I don't recognize day '{}'. Format should be full name of day and is not case sensitive. E.g., Monday. Please re-enter\n".format(day)).lower()
+    day = get_input("Which day of the week are you interested in? If all, enter all\n", days_including_all)
 
     print('-'*40)
     return city, month, day
